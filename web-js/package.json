@@ -1,0 +1,13 @@
+{
+  "name": "demo-web-js",
+  "scripts": {
+    "start": "vite ./widget",
+    "start:embed": "vite ./embed"
+  },
+  "devDependencies": {
+    "vite": "^5.2.7"
+  },
+  "dependencies": {
+    "@thanksjs/web": "^0.0.1-beta.0"
+  }
+}

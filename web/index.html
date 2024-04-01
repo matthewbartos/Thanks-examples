@@ -1,0 +1,46 @@
+<html>
+<head>
+    <title>Thanks JS web example</title>
+</head>
+<body>
+<h1>Thanks demo</h1>
+Add `?email=x@y.z` to the URL to see the widget with the email pre-filled.
+<script>
+    const queryParams = new URLSearchParams(window.location.search);
+    __thanks = {
+        // FIXME: this is thanksjs own Id
+        partnerId:"2a37e310-e0a2-46d0-b46b-0c55f902c169",
+        statusText: 'Order confirmed: Thanks Demo',
+        email: ({ encode }) => encode(queryParams.get('email')),
+        // embeddedInto: document.getElementById('thanks-widget'),
+        items: [
+            {
+                name: 'Colourful stacking glass set',
+                category: 'gifts',
+                value: 42,
+                currency: 'AUD',
+            },
+        ],
+
+        onDisplay: () => {
+            console.log('widget displayed');
+        },
+        onClose: () => {
+            console.log('widget closed');
+        },
+
+        onPersonalInformationRequest(subject, info) {
+            console.log('request PII');
+            const email = queryParams.get('email');
+            return email
+                ? {
+                    email,
+                    firstName: 'TestUser',
+                }
+                : undefined;
+        },
+    };
+</script>
+<script src="https://thanks.is/v1/widget.js"></script>
+</body>
+</html>

@@ -37,6 +37,4 @@ target 'ReactNativeBare' do
       # :ccache_enabled => true
     )
   end
-
-  pod 'react-native-webview', :path => '../node_modules/react-native-webview'
 end

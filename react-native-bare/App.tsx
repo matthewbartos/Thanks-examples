@@ -1,24 +1,34 @@
-/* eslint-disable react-native/no-inline-styles */
-import {ThanksWidget} from '@thanksjs/react-native-webview';
+import {ThanksBlock, ThanksWidget} from '@thanksjs/react-native-webview';
 
 import {
   ThanksWidgetController,
   thanksWidget,
 } from '@thanksjs/react-native-webview';
-import {View, Text, Button} from 'react-native';
-import React, {ComponentProps, useState} from 'react';
+import {
+  type ComponentProps,
+  type FC,
+  type PropsWithChildren,
+  useState,
+} from 'react';
+import {View, Text, Button, Modal, SafeAreaView} from 'react-native';
 
 type DirectWidgetProps = {
   onClose: ComponentProps<typeof ThanksWidget>['onClose'];
 };
+
+const CustomWrapper: FC<PropsWithChildren> = ({children}) => (
+  <Modal>{children}</Modal>
+);
 
 const DirectWidget = ({onClose}: DirectWidgetProps) => {
   return (
     <ThanksWidget
       // FIXME: this is thanksjs own Id
       partnerId="2a37e310-e0a2-46d0-b46b-0c55f902c169"
-      statusText="thanks for being awesome"
+      statusText="DIRECT"
+      email="test@test.com"
       onClose={onClose ?? (() => {})}
+      wrapperComponent={CustomWrapper}
     />
   );
 };
@@ -28,11 +38,14 @@ const IndirectWidget = () => {
     <>
       <Button
         onPress={() =>
-          thanksWidget.open({statusText: 'thanks for being awesome'})
+          thanksWidget.open({
+            statusText: 'thanks for being awesome',
+          })
         }
         title="Click here to Display Thanks"
       />
       <ThanksWidgetController
+        email="test@test.com"
         // FIXME: this is thanksjs own Id
         partnerId="2a37e310-e0a2-46d0-b46b-0c55f902c169"
       />
@@ -49,14 +62,25 @@ export default function App() {
   };
 
   return (
-    <>
+    <SafeAreaView
+      style={{
+        backgroundColor: '#000',
+      }}>
+      <ThanksBlock
+        slot="slot-mobile"
+        partnerId="949ca5e1-8a92-4198-948c-a9400fdf9fb1"
+        widgetConfiguration={{
+          animationType: 'slide',
+        }}
+        height={152}
+        width={'100%'}
+      />
       <View
         style={{
           justifyContent: 'center',
           alignItems: 'center',
-          backgroundColor: '#000',
           width: '100%',
-          height: '100%',
+          height: '82%',
         }}>
         <Button
           title="display simple example"
@@ -67,7 +91,7 @@ export default function App() {
         />
         <Button title="display indirect example" onPress={() => setMode(2)} />
         <Text>mode is: {['none', 'simple', 'indirect'][mode]}</Text>
-        {new Array(20).fill(0).map((_, i) => (
+        {new Array(10).fill(0).map((_, i) => (
           <Text key={i} style={{color: '#FFF'}}>
             {new Array(4).fill(' Thanks ').join('')}
           </Text>
@@ -75,6 +99,6 @@ export default function App() {
         {mode === 1 && isOpen && <DirectWidget onClose={handleClose} />}
         {mode === 2 && <IndirectWidget />}
       </View>
-    </>
+    </SafeAreaView>
   );
 }

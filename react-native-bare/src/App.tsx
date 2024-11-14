@@ -66,15 +66,20 @@ export default function App() {
       style={{
         backgroundColor: '#000',
       }}>
-      <ThanksBlock
-        slot="slot-mobile"
-        partnerId="949ca5e1-8a92-4198-948c-a9400fdf9fb1"
-        widgetConfiguration={{
-          animationType: 'slide',
+      <View
+        style={{
+          width: "100%",
+          height: 152,
         }}
-        height={152}
-        width={'100%'}
-      />
+      >
+        <ThanksBlock
+          slot="slot-mobile"
+          partnerId="949ca5e1-8a92-4198-948c-a9400fdf9fb1"
+          widgetConfiguration={{
+            animationType: "slide",
+          }}
+        />
+      </View>
       <View
         style={{
           justifyContent: 'center',

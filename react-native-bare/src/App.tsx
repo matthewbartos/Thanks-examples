@@ -1,26 +1,26 @@
-import { ThanksBlock, ThanksWidget } from "@thanksjs/react-native-webview";
+import {ThanksBlock, ThanksWidget} from '@thanksjs/react-native-webview';
 
 import {
   ThanksWidgetController,
   thanksWidget,
-} from "@thanksjs/react-native-webview";
+} from '@thanksjs/react-native-webview';
 import {
   type ComponentProps,
   type FC,
   type PropsWithChildren,
   useState,
-} from "react";
-import { View, Text, Button, Modal, SafeAreaView } from "react-native";
+} from 'react';
+import {View, Text, Button, Modal, SafeAreaView} from 'react-native';
 
 type DirectWidgetProps = {
-  onClose: ComponentProps<typeof ThanksWidget>["onClose"];
+  onClose: ComponentProps<typeof ThanksWidget>['onClose'];
 };
 
-const CustomWrapper: FC<PropsWithChildren> = ({ children }) => (
+const CustomWrapper: FC<PropsWithChildren> = ({children}) => (
   <Modal>{children}</Modal>
 );
 
-const DirectWidget = ({ onClose }: DirectWidgetProps) => {
+const DirectWidget = ({onClose}: DirectWidgetProps) => {
   return (
     <ThanksWidget
       // FIXME: this is thanksjs own Id
@@ -39,7 +39,7 @@ const IndirectWidget = () => {
       <Button
         onPress={() =>
           thanksWidget.open({
-            statusText: "thanks for being awesome",
+            statusText: 'thanks for being awesome',
           })
         }
         title="Click here to Display Thanks"
@@ -64,9 +64,8 @@ export default function App() {
   return (
     <SafeAreaView
       style={{
-        backgroundColor: "#000",
-      }}
-    >
+        backgroundColor: '#000',
+      }}>
       <View
         style={{
           width: "100%",
@@ -83,12 +82,11 @@ export default function App() {
       </View>
       <View
         style={{
-          justifyContent: "center",
-          alignItems: "center",
-          width: "100%",
-          height: "82%",
-        }}
-      >
+          justifyContent: 'center',
+          alignItems: 'center',
+          width: '100%',
+          height: '82%',
+        }}>
         <Button
           title="display simple example"
           onPress={() => {
@@ -97,10 +95,10 @@ export default function App() {
           }}
         />
         <Button title="display indirect example" onPress={() => setMode(2)} />
-        <Text>mode is: {["none", "simple", "indirect"][mode]}</Text>
+        <Text>mode is: {['none', 'simple', 'indirect'][mode]}</Text>
         {new Array(10).fill(0).map((_, i) => (
-          <Text key={i} style={{ color: "#FFF" }}>
-            {new Array(4).fill(" Thanks ").join("")}
+          <Text key={i} style={{color: '#FFF'}}>
+            {new Array(4).fill(' Thanks ').join('')}
           </Text>
         ))}
         {mode === 1 && isOpen && <DirectWidget onClose={handleClose} />}

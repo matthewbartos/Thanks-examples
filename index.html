@@ -3,15 +3,7 @@
     <title>Thanks JS web example</title>
 </head>
 <body>
-<h1>Thanks demo</h1>
-Add `?email=x@y.z` to the URL to see the widget with the email pre-filled.
 
-<div style="height:100%; display: flex; width:100%; align-items: center;margin:auto">
-    <div style="margin: auto; width:50%">
-    <div id="thanks-widget"></div>
-    <div>resize window to check how responsive it is</div>
-    </div>
-</div>
 <script>
     const queryParams = new URLSearchParams(window.location.search);
     __thanks = {
@@ -19,7 +11,7 @@ Add `?email=x@y.z` to the URL to see the widget with the email pre-filled.
         partnerId:"2a37e310-e0a2-46d0-b46b-0c55f902c169",
         statusText: 'Order confirmed: Thanks Demo',
         email: ({ encode }) => encode(queryParams.get('email')),
-        embeddedInto: document.getElementById('thanks-widget'),
+        // embeddedInto: document.getElementById('thanks-widget'),
         items: [
             {
                 name: 'Colourful stacking glass set',

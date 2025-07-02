@@ -35,8 +35,10 @@
             },
             onClose: () => {
                 console.log('widget closed');
-                if (window.AndroidInterface && window.AndroidInterface.notifyClose) {
+                if (window.AndroidInterface && typeof window.AndroidInterface.notifyClose === 'function') {
                     window.AndroidInterface.notifyClose();
+                } else {
+                    console.log('AndroidInterface is not available');
                 }
             },
 

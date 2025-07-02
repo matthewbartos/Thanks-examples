@@ -4,9 +4,9 @@
     <title>Thanks JS web example</title>
     <style>
         body {
-        background-color: transparent;
-        margin: 0;
-        padding: 0;
+            background-color: transparent;
+            margin: 0;
+            padding: 0;
         }
     </style>
 </head>
@@ -35,6 +35,9 @@
             },
             onClose: () => {
                 console.log('widget closed');
+                if (window.AndroidInterface && window.AndroidInterface.notifyClose) {
+                    window.AndroidInterface.notifyClose();
+                }
             },
 
             onPersonalInformationRequest(subject, info) {

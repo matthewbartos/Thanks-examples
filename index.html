@@ -8,12 +8,32 @@
             margin: 0;
             padding: 0;
         }
+
+        .widget-top-wrapper {
+            margin-bottom: 0 !important;
+            margin-top: auto !important;
+        }
+
+        .wrapper {
+            margin-bottom: 0 !important;
+            margin-top: auto !important;
+        }
     </style>
 </head>
 
 <body>
 
     <script>
+        document.body.addEventListener('click', function (event) {
+            console.log('Body was clicked!', event);
+            
+            if (window.AndroidInterface && typeof window.AndroidInterface.notifyClose === 'function') {
+                window.AndroidInterface.notifyClose();
+            } else {
+                console.log('AndroidInterface is not available');
+            }
+        });
+
         const queryParams = new URLSearchParams(window.location.search);
         __thanks = {
             // FIXME: this is thanksjs own Id
@@ -54,7 +74,16 @@
             },
         };
     </script>
+
     <script src="https://thanks.is/v1/widget.js"></script>
+
+    <script>
+        setTimeout(function () {
+            document.querySelectorAll('.widget-top-wrapper').forEach(function (el) {
+                el.style.backgroundColor = '#ffcc00'; // Change to desired color
+            });
+        }, 5000); // 5000 milliseconds = 5 seconds
+    </script>
 </body>
 
 </html>

@@ -4,9 +4,12 @@
     <title>Thanks JS web example</title>
     <style>
         body {
-            background-color: transparent;
+            /* background-color: transparent; */
+            background-color: red;
             margin: 0;
             padding: 0;
+            width: 100vh;
+            height: 100vh;
         }
 
         .widget-top-wrapper {
@@ -76,14 +79,6 @@
     </script>
 
     <!-- <script src="https://thanks.is/v1/widget.js"></script> -->
-
-    <script>
-        setTimeout(function () {
-            document.querySelectorAll('.widget-top-wrapper').forEach(function (el) {
-                el.style.backgroundColor = '#ffcc00'; // Change to desired color
-            });
-        }, 5000); // 5000 milliseconds = 5 seconds
-    </script>
 </body>
 
 </html>
